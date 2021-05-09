@@ -30,6 +30,13 @@ app.get("/", (req, res) => {
     ind = ind.toString().replace("<!-- LIST -->", s);
     //res.setHeader("Content-Security-Policy", "script-src http://localhost:8080")
     //res.setHeader("Content-Security-Policy", "script-src 'none'")
+    res.setHeader(
+        'Report-To',
+        '{"group":"default","max_age":31536000,"endpoints":[{"url":"https://28b4f7f552de9ce9ea56040e1d08af39.report-uri.com/a/d/g"}],"include_subdomains":true}'
+      );    
+    res.setHeader("Content-Security-Policy-Report-Only", "script-src 'none';report-uri https://28b4f7f552de9ce9ea56040e1d08af39.report-uri.com/r/d/csp/enforce")
+    // Content-Security-Policy: default-src https:; report-uri /csp-violation-report-endpoint/
+
     res.send(ind);
 })
 
